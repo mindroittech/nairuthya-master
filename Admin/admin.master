@@ -1,0 +1,215 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="admin.master.cs" Inherits="Admin_admin" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../nairuthyfev.png" type="image/x-icon" />
+    <!-- CORE CSS FRAMEWORK - START -->
+    <link href="../Member/assets/plugins/pace/pace-theme-flash.css" rel="stylesheet"
+        type="text/css" media="screen" />
+    <link href="../Member/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="../Member/assets/plugins/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="../Member/assets/fonts/font-awesome/css/font-awesome.css" rel="stylesheet"
+        type="text/css" />
+    <link href="../Member/assets/fonts/webfont/cryptocoins.css" rel="stylesheet" type="text/css" />
+    <link href="../Member/assets/css/animate.min.css" rel="stylesheet" type="text/css" />
+    <link href="../Member/assets/plugins/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet"
+        type="text/css" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        rel="stylesheet" type="text/css" />
+    <!-- CORE CSS FRAMEWORK - END -->
+    <!-- HEADER SCRIPTS INCLUDED ON THIS PAGE - START -->
+    <link href="../Member/assets/plugins/jvectormap/jquery-jvectormap-2.0.1.css" rel="stylesheet"
+        type="text/css" media="screen">
+    <link href="../Member/assets/plugins/icheck/skins/all.css" rel="stylesheet" type="text/css"
+        media="screen">
+    <!-- HEADER SCRIPTS INCLUDED ON THIS PAGE - END -->
+    <!-- CORE CSS TEMPLATE - START -->
+    <link href="../Member/assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../Member/assets/css/responsive.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form2" runat="server">
+    <!-- START TOPBAR -->
+    <div class='page-topbar'>
+        <div class='logo-area'>
+            <img src="../nairuthyalogo.png" class="logo" style="width: 60px;">
+        </div>
+        <div class='quick-area'>
+            <div class='pull-right'>
+            <div>
+                    <button class="menu-toggle" id="menuToggle"><i class="fa fa-bars"></i></button>
+                </div>
+                <ul class="info-menu right-links list-inline list-unstyled">
+                    <li class="profile"><a href="#" data-toggle="dropdown" class="toggle">
+                        <asp:Image ID="Image3" ImageUrl="../nairuthyalogo.png" runat="server"
+                            CssClass="img-circle img-inline"></asp:Image>
+                        <span>
+                            <asp:Label ID="Label1" runat="server" Text="Admin"></asp:Label><i class="fa fa-angle-down"></i></span>
+                    </a>
+                        <ul class="dropdown-menu profile animated fadeIn">
+                            <li class="last"><a>
+                                <asp:LinkButton ID="LinkButton1" runat="server" CssClass="dropdown-item" OnClick="LinkButton1_Click"
+                                    ValidationGroup="lg">
+                                <i class="fa fa-lock"></i>
+                               Logout</asp:LinkButton>
+                                            </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- START CONTAINER -->
+    <div class="page-container row-fluid container-fluid">
+        <!-- SIDEBAR - START -->
+        <div class="page-sidebar fixedscroll" id="menuItems">
+            <!-- MAIN MENU - START -->
+            <div class="page-sidebar-wrapper" id="main-menu-wrapper">
+                <ul class='wraplist'>
+                    <li class='menusection' style="margin-top: 10px; margin-bottom: 25px;">
+                        <asp:Image ID="Image1" ImageUrl="../nairuthyalogo.png" runat="server"
+                            Style="width: 50px; height: 50px;"></asp:Image>
+                        <asp:Label ID="lblMyName" runat="server" Text=""></asp:Label>
+                    </li>
+                    <li class="open"><a href="dashboard.aspx"><i class="fa fa-th-large"></i><span class="title">
+                        Dashboard</span> </a></li>
+                    <li class=""><a href="javascript:;"><i class="fa fa-user"></i><span class="title">Profile</span>
+                        <span class="arrow "></span></a>
+                        <ul class="sub-menu">
+                            <li><a class="" href="#">Profile</a> </li>
+                            <li><a class="" href="change-pwd.aspx">Change Password</a> </li>
+                        </ul>
+                    </li>
+                   
+                    <li class=""><a href="javascript:;"><i class="fa fa-users"></i><span class="title">Members</span>
+                        <span class="arrow "></span></a>
+                        <ul class="sub-menu">
+                            <li><a class="" href="view-members.aspx">View Members</a> </li>
+                            <li><a class="" href="deactivated.aspx">Deactivated Members</a> </li>
+                        
+                        </ul>
+                    </li>
+
+                     <li class=""><a href="javascript:;"><i class="fa fa-money"></i><span class="title">Investments & Divident</span>
+                         <span class="arrow "></span></a>
+                         <ul class="sub-menu">
+                             <li><a class="" href="history.aspx">Investments History</a> </li>
+                             <li><a class="" href="generate-divident.aspx">Generate Divident</a> </li>
+                             <li><a class="" href="divident-history.aspx">Divident History</a> </li>
+
+                         </ul>
+                     </li>
+                    <li class=""><a href="javascript:;"><i class="fa fa-user-circle"></i><span class="title">
+                        Account Transactions</span> <span class="arrow "></span></a>
+                        <ul class="sub-menu">
+                            <li><a class="" href="withdraw-request.aspx">Withdraw Requests</a> </li>
+                            <li><a class="" href="withdraw-history.aspx">Withdraw History</a> </li>
+                        <%--    <li><a class="" href="RejectedPayout.aspx">Rejected Payouts</a> </li>--%>
+                            <li><a class="" href="account-bydate.aspx">Accounts By Date</a> </li>
+                            <li><a class="" href="accounts.aspx">Accounts By User</a> </li>
+                        </ul>
+                    </li>
+                   
+                    <li class=""><a href="javascript:;"><i class="fa fa-pie-chart"></i><span class="title">
+                        Reports</span> <span class="arrow "></span></a>
+                        <ul class="sub-menu">
+                        
+                            <li><a class="" href="walletReport.aspx">Wallet Report</a> </li>
+                          
+                        <%--<li><a class="" href="teambusiness.aspx">Team Business Report</a> </li>
+                         
+                             <li><a class="" href="finance-report.aspx">Financial Report</a> </li>--%>
+                        </ul>
+                    </li>
+                   
+                    <li class="">
+                        <asp:LinkButton ID="LinkButton2" CssClass="nav-link" runat="server" OnClick="LinkButton1_Click"
+                            ValidationGroup="lg">
+                 <i class="fa fa-power-off"></i>
+       
+            
+              <span class="title">Logout</span> </asp:LinkButton>
+                    </li>
+                </ul>
+            </div>
+            <!-- MAIN MENU - END -->
+        </div>
+        <!--  SIDEBAR - END -->
+        <!-- START CONTENT -->
+        <section id="main-content" class="">
+
+               <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+
+           
+           
+        </section>
+        <!-- END CONTENT -->
+    </div>
+    <!-- CORE JS FRAMEWORK - START -->
+    <script src="../member/assets/js/jquery-1.11.2.min.js"></script>
+    <script src="../member/assets/js/jquery.easing.min.js"></script>
+    <script src="../member/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../member/assets/plugins/pace/pace.min.js"></script>
+    <script src="../member/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="../member/assets/plugins/viewport/viewportchecker.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="../Member/assets/js/jquery-1.11.2.min.js"><\/script>');
+    </script>
+    <!-- CORE JS FRAMEWORK - END -->
+    <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START -->
+    <script src="../member/assets/plugins/autosize/autosize.min.js"></script>
+    <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END -->
+    <!-- CORE TEMPLATE JS - START -->
+    <script src="../member/assets/js/scripts.js"></script>
+    <!-- Sidebar Collapse -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.getElementById("menuToggle");
+        const menuItems = document.getElementById("menuItems");
+
+        const isMobile = () => window.innerWidth <= 767;
+
+        menuToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            if(isMobile()) {
+                if(menuItems.style.display === 'block') {
+                menuItems.style.display = 'none';
+                } else {
+                    menuItems.style.display = 'block';
+                }
+            }
+         });
+
+         // Ensure the menu is reset based on the device when the page loads
+            const setInitialMenuState = () => {
+                if (isMobile()) {
+                menuItems.style.display = 'none'; // Hide menu for mobile devices
+                } else {
+                menuItems.style.display = 'flex'; // Show menu for desktop devices
+                }
+            };
+
+            // Reset the menu visibility on resize
+            window.addEventListener('resize', setInitialMenuState);
+
+            // Set the initial menu state when the page loads
+            setInitialMenuState();
+
+
+    });
+
+    </script>
+    </form>
+</body>
+</html>

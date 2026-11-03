@@ -1,0 +1,99 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description"
+     content="AGS - Ambitious Global Services. Your Success our Priority. Expert trading research, market insights, and investment strategies for successful trading.">
+ <meta name="keywords"
+     content="stock trading, market research, trading signals, investment, financial services, AGS, Ambitious Global Services">
+ <meta name="author" content="AGS - Ambitious Global Services">
+ <meta property="og:title" content="AGS - Ambitious Global Services | Your Success our Priority">
+ <meta property="og:description"
+     content="Trade with Knowledge. Grow with Confidence. Join AGS's expert-backed community for trading success.">
+ <meta property="og:type" content="website">
+ <link rel="icon" type="image/png" href="public/WhatsApp_Image_2025-07-20_at_12.27.41_AM-removebg-preview.png">
+ <title>AGS - Ambitious Global Services | Your Success our Priority</title>
+ <link rel="stylesheet" href="styles.css">
+ <link rel="stylesheet" href="components.css">
+ <link rel="stylesheet" href="animations.css">
+ 
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+<form id="form1" runat="server">
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme"
+      style="position:fixed; top:1rem; right:1rem; z-index:1000; cursor:grab;">
+      <span class="sun-icon">☀️</span>
+      <span class="moon-icon">🌙</span>
+  </button>
+  <script>
+      // Make the theme toggle button draggable
+      const themeToggle = document.getElementById('theme-toggle');
+      let isDragging = false, offsetX = 0, offsetY = 0;
+
+      themeToggle.addEventListener('mousedown', function (e) {
+          isDragging = true;
+          offsetX = e.clientX - themeToggle.getBoundingClientRect().left;
+          offsetY = e.clientY - themeToggle.getBoundingClientRect().top;
+          themeToggle.style.cursor = 'grabbing';
+      });
+
+      document.addEventListener('mousemove', function (e) {
+          if (isDragging) {
+              themeToggle.style.left = (e.clientX - offsetX) + 'px';
+              themeToggle.style.top = (e.clientY - offsetY) + 'px';
+              themeToggle.style.right = 'auto'; // Allow free movement
+          }
+      });
+
+      document.addEventListener('mouseup', function () {
+          isDragging = false;
+          themeToggle.style.cursor = 'grab';
+      });
+
+      // Touch support for mobile
+      themeToggle.addEventListener('touchstart', function (e) {
+          isDragging = true;
+          const touch = e.touches[0];
+          offsetX = touch.clientX - themeToggle.getBoundingClientRect().left;
+          offsetY = touch.clientY - themeToggle.getBoundingClientRect().top;
+      });
+
+      document.addEventListener('touchmove', function (e) {
+          if (isDragging) {
+              const touch = e.touches[0];
+              themeToggle.style.left = (touch.clientX - offsetX) + 'px';
+              themeToggle.style.top = (touch.clientY - offsetY) + 'px';
+              themeToggle.style.right = 'auto';
+          }
+      });
+
+      document.addEventListener('touchend', function () {
+          isDragging = false;
+      });
+
+      // Set dark mode as default on page load
+      document.documentElement.setAttribute('data-theme', 'dark');
+  </script>
+
+  
+
+  
+
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+    </asp:ContentPlaceHolder>
+    <!-- Footer Start -->
+  <!-- Footer -->
+  
+
+  <script src="./script.js"></script>
+  <script src="./animations.js"></script>
+  <script src="./charts.js"></script>
+    </form>
+</body>
+</html>

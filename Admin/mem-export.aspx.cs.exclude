@@ -1,0 +1,106 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Drawing;
+using System.IO;
+
+public partial class Admin_mem_export : System.Web.UI.Page
+{
+    DataClassesDataContext db = new DataClassesDataContext();
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        string planType = Request.QueryString["plan"];
+        //var get = from c in db.tblMembers
+        //          join d in db.tblPlans
+        //          on c.plan equals d.PlanName
+        //          //where c.isActive == 1
+        //          select new { c.username, c.name, c.mobile, c.joindate, c.renewal,c.account, c.ifsc, c.plan, c.status , d.PlanType };
+
+        var get = from c in db.tblMembers
+                  join d in db.tblPlans on c.plan equals d.PlanName into planGroup
+                  from d in planGroup.DefaultIfEmpty() // Left Join: Includes all members even if no matching plan
+                  select new
+                  {
+                      c.username,
+                      c.name,
+                      c.mobile,
+                      c.joindate,
+                      c.renewal,
+                      c.account,
+                      c.ifsc,
+                      c.plan,
+                      c.status,
+                      PlanType = d != null ? d.PlanType : "", // Handle null if no matching plan
+                  };
+        if (planType != "All")
+        {
+            get = get.Where(x => x.PlanType == planType);
+        }
+
+        GridView1.DataSource = get;
+        GridView1.DataBind();
+
+        ExportToExcel("Members");
+    }
+
+
+    public override void VerifyRenderingInServerForm(Control control)
+    {
+        /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
+           server control at run time. */
+    }
+
+    protected void ExportToExcel(string fileName)
+    {
+        Response.Clear();
+        Response.Buffer = true;
+        Response.AddHeader("content-disposition", "attachment;filename=" + fileName + ".xls");
+        Response.Charset = "";
+        Response.ContentType = "application/vnd.ms-excel";
+        using (StringWriter sw = new StringWriter())
+        {
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+            //To Export all pages
+            GridView1.AllowPaging = false;
+            GridView1.DataBind();
+
+            GridView1.HeaderRow.BackColor = Color.White;
+            foreach (TableCell cell in GridView1.HeaderRow.Cells)
+            {
+                cell.BackColor = GridView1.HeaderStyle.BackColor;
+            }
+            foreach (GridViewRow row in GridView1.Rows)
+            {
+                row.BackColor = Color.White;
+                foreach (TableCell cell in row.Cells)
+                {
+                    if (row.RowIndex % 2 == 0)
+                    {
+                        cell.BackColor = GridView1.AlternatingRowStyle.BackColor;
+                    }
+                    else
+                    {
+                        cell.BackColor = GridView1.RowStyle.BackColor;
+                    }
+                    if (row.Cells[3] == cell || row.Cells[7] == cell)
+                        cell.CssClass = "text";
+                    else
+                        cell.CssClass = "textmode";
+                }
+            }
+
+            GridView1.RenderControl(hw);
+
+            //style to format numbers to string
+            string style = @"<style> .textmode { } .text{mso-number-format:\@; }  </style>";
+            Response.Write(style);
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
+        }
+    }
+}
